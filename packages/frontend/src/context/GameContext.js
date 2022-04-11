@@ -81,9 +81,7 @@ const GameContextProvider = ({ children }) => {
     const getTheHighestPointsThatPlayersAchived = Math.max(
       ...players.map(({ points }) => points)
     )
-    if (getTheHighestPointsThatPlayersAchived === 0) {
-      return
-    }
+    if (getTheHighestPointsThatPlayersAchived === 0) return
 
     const thePlayersThatAchievedHighestPoints = players.filter(
       ({ points }) => points === getTheHighestPointsThatPlayersAchived
