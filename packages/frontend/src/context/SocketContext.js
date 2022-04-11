@@ -5,7 +5,6 @@ export const SocketContext = createContext()
 
 const SocketProvider = ({ children }) => {
   const [activeSocket, setActiveSocket] = React.useState()
-  const [socketClients, setSocketClients] = React.useState([])
 
   useEffect(() => {
     const socket = io("localhost:8000")
@@ -19,7 +18,7 @@ const SocketProvider = ({ children }) => {
   }, [])
 
   return (
-    <SocketContext.Provider value={{ activeSocket, socketClients }}>
+    <SocketContext.Provider value={{ activeSocket }}>
       {children}
     </SocketContext.Provider>
   )
