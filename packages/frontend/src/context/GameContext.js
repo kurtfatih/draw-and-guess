@@ -246,8 +246,8 @@ const GameContextProvider = ({ children }) => {
         if (activeTurnCount.current === players.length - 1) {
           return stopGame()
         }
-        activeTurnCount.current += 1
-        initGame()
+        // activeTurnCount.current += 1
+        // initGame()
       }
     }, 1000)
     activeInterval.current = intervalId

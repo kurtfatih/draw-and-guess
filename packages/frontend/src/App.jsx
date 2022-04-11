@@ -11,20 +11,16 @@ function App() {
       style={{
         display: "flex",
         justifyContent: "center",
-        minHeight: "100vh",
+        height: "100vh",
         alignItems: "center",
         backgroundColor: "#085EFB"
       }}
       id="container"
     >
       <SocketProvider>
-        <Card id="card-container">
-          <CardItem>
-            <GameContextProvider>
-              <GameScreen />
-            </GameContextProvider>
-          </CardItem>
-        </Card>
+        <GameContextProvider>
+          <GameScreen />
+        </GameContextProvider>
       </SocketProvider>
     </main>
   )

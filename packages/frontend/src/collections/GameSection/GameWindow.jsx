@@ -19,39 +19,21 @@ const GameWindow = () => {
   }, [])
 
   return (
-    <>
-      <canvas
-        ref={gameWindowRef}
-        onMouseMove={(e) => (player.id !== drawer.id ? null : draw(e))}
-        onMouseDownCapture={(e) =>
-          player.id !== drawer.id ? null : startStopDraw(e)
-        }
-        id="game-screen-canvas"
-        width={GAME_WINDOW_WIDTH}
-        height={GAME_WINDOW_HEIGHT}
-        style={{
-          border: "5px solid #000",
-          width: "600px",
-          height: "600px"
-        }}
-      />
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "center",
-          height: "5px"
-        }}
-      >
-        <span
-          style={{
-            background: "red",
-            height: "5px",
-            width: `${gameCountDownTimerValue}%`
-          }}
-        ></span>
-      </div>
-    </>
+    <canvas
+      ref={gameWindowRef}
+      onMouseMove={(e) => (player.id !== drawer.id ? null : draw(e))}
+      onMouseDownCapture={(e) =>
+        player.id !== drawer.id ? null : startStopDraw(e)
+      }
+      id="game-screen-canvas"
+      width={GAME_WINDOW_WIDTH}
+      height={GAME_WINDOW_HEIGHT}
+      style={{
+        border: "5px solid #000",
+        width: "600px",
+        height: "600px"
+      }}
+    />
   )
 }
 export default GameWindow

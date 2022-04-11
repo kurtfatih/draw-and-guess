@@ -1,14 +1,12 @@
 import React, { useContext } from "react"
-import GameWindow from "./GameWindow"
 import { GameContext } from "../../context/GameContext"
 import { PreGameScreen } from "../PreGameSection/PreGameScreen"
 import { LobbyScreen } from "../LobbySection/LobbyScreen"
-import { GuessSection } from "../GuessSection/GuessSection"
+import { RoomScreen } from "../RoomSection/RoomScreen"
 
 export function GameScreen() {
   const {
     isGameStarted,
-    drawer,
     isPreScreen,
     player,
     players,
@@ -39,10 +37,7 @@ export function GameScreen() {
     <>
       {isGameStarted ? (
         !isPreScreen ? (
-          <>
-            <GameWindow />
-            <GuessSection />
-          </>
+          <RoomScreen />
         ) : (
           <PreGameScreen />
         )
