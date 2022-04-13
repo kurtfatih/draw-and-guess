@@ -1,22 +1,18 @@
 import React, { useContext } from "react"
-import { GuessChat } from "./GuessChat"
 
 import styled from "styled-components"
 import { GameContext } from "../../context/GameContext"
-import { GuessInputSection } from "./GuessInputSection"
-import { ChatInputContainer, ChatContainer } from "../../components/Chat"
 
 const GuessContainer = styled.div`
   display: flex;
+  height: 85%;
+  padding: 1em;
   flex-direction: column;
   align-items: center;
-  padding: 1em;
-  background-color: #bde5a4;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  max-height: 500px;
   overflow-y: auto;
-  min-width: 200px;
 `
 
 const YourPointsText = styled.p`

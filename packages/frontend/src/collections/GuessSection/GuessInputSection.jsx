@@ -3,10 +3,13 @@ import styled from "styled-components"
 import { Button } from "../../components/Button"
 
 const GuessInputSectionContainer = styled.div`
-  margin: 1em;
+  height: 10%;
+  display: flex;
+  align-items: center;
 `
 const Input = styled.input`
-  border: 2px #868d96 solid;
+  width: 50%;
+  border: 0;
   background-color: #fff;
   border-radius: 10px;
   padding: 1em;

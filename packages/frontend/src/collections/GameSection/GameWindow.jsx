@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { usePlayer } from "../../hooks/usePlayer"
 import { GameContext } from "../../context/GameContext"
 export const GAME_WINDOW_WIDTH = 600
-export const GAME_WINDOW_HEIGHT = 600
+export const GAME_WINDOW_HEIGHT = 400
 const GameWindow = () => {
   const [ctx, setCtx] = React.useState()
 
@@ -30,8 +30,8 @@ const GameWindow = () => {
       height={GAME_WINDOW_HEIGHT}
       style={{
         border: "5px solid #000",
-        width: "600px",
-        height: "600px"
+        width: GAME_WINDOW_WIDTH,
+        height: GAME_WINDOW_HEIGHT
       }}
     />
   )
