@@ -1,8 +1,9 @@
-import * as React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { NormalText } from "../../components/Typography"
 import { Button } from "../../components/Button"
 import SaveIcon from "../../assets/save.svg"
+import { GameContext } from "../../context/GameContext"
 
 const Input = styled.input`
   border: 2px #868d96 solid;
@@ -22,14 +23,23 @@ const NickNameForm = styled.form`
   justify-content: space-between;
 `
 
-export const LobbyInput = ({
-  isPlayerReady,
-  handleReady,
-  status,
-  handleChangeOnUsername,
-  handleUserNameSubmit,
-  playerId
-}) => {
+export const LobbyInput = ({ isPlayerReady, status, playerId }) => {
+  const [username, setUsername] = React.useState("")
+  const { updatePlayer } = useContext(GameContext)
+  const handleChangeOnUsername = (e) => {
+    setUsername(e.target.value)
+  }
+  const handleUserNameSubmit = (e) => {
+    e.preventDefault()
+    updatePlayer("username", username)
+  }
+  const handleReady = () => {
+    if (isPlayerReady) {
+      return updatePlayer("isReady", false)
+    }
+    return updatePlayer("isReady", true)
+  }
+
   return (
     <InputContainer>
       <NormalText>Nickname :</NormalText>

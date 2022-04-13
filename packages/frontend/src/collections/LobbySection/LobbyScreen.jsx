@@ -33,9 +33,7 @@ const LobbyBodyContainer = styled.div`
 `
 
 export const LobbyScreen = () => {
-  const [username, setUsername] = React.useState("")
-
-  const { player, updatePlayer, players } = useContext(GameContext)
+  const { player, players } = useContext(GameContext)
   const playerName = player?.username
     ? player.username.length > 0
       ? player.username
@@ -43,32 +41,12 @@ export const LobbyScreen = () => {
     : player.id
 
   const isPlayerReady = player.isReady
-
   const numberOfTotalPlayers = players.length
   const otherPlayers = players.filter(({ id }) => id !== player.id)
-
   const numberOfPlayersThatIsReady = players.filter(
     ({ isReady }) => isReady === true
   ).length
-
   const status = isPlayerReady ? "Ready" : "Not Ready"
-
-  const handleChangeOnUsername = (e) => {
-    setUsername(e.target.value)
-  }
-
-  const handleUserNameSubmit = (e) => {
-    e.preventDefault()
-    updatePlayer("username", username)
-  }
-
-  const handleReady = () => {
-    if (isPlayerReady) {
-      return updatePlayer("isReady", false)
-    }
-    return updatePlayer("isReady", true)
-  }
-
   const isShowOtherPlayers = otherPlayers.length > 0
 
   return (
@@ -78,9 +56,6 @@ export const LobbyScreen = () => {
         <LobbyBodyContainer>
           <PlayerStatus status={status} playerName={playerName} />
           <LobbyInput
-            handleChangeOnUsername={handleChangeOnUsername}
-            handleUserNameSubmit={handleUserNameSubmit}
-            handleReady={handleReady}
             isPlayerReady={isPlayerReady}
             playerId={player.id}
             status={status}
