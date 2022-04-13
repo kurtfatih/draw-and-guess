@@ -3,33 +3,15 @@ import { GameContext } from "../../context/GameContext"
 import { PreGameScreen } from "../PreGameSection/PreGameScreen"
 import { LobbyScreen } from "../LobbySection/LobbyScreen"
 import { RoomScreen } from "../RoomSection/RoomScreen"
+import { WinnerScreen } from "../WinnerSection/WinnerScreen"
 
 export function GameScreen() {
-  const {
-    isGameStarted,
-    isPreScreen,
-    player,
-    players,
-    isWinnerScreen,
-    winner
-  } = useContext(GameContext)
+  const { isGameStarted, isPreScreen, player, players, isWinnerScreen } =
+    useContext(GameContext)
 
-  if (players.length === 0) return <div>Waiting for players...</div>
-  if (!player) return <div> Player null</div>
-  if (isWinnerScreen)
-    return (
-      <div>
-        {" "}
-        Winner screen here{" "}
-        {winner.map(({ id, points }, index) => (
-          <div key={index}>
-            <p>
-              winner {id} : {points}
-            </p>
-          </div>
-        ))}
-      </div>
-    )
+  if (!player) return <div>Connecting...</div>
+  if (players.length === 1) return <div>Waiting for players...</div>
+  if (isWinnerScreen) return <WinnerScreen />
 
   // const { id, username, isReady } = player
 

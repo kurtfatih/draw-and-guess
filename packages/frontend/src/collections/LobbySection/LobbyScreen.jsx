@@ -1,8 +1,11 @@
 import React, { useContext } from "react"
 import { GameContext } from "../../context/GameContext"
-import UpdateUserNameForm from "./UpdateUserNameForm"
 import styled from "styled-components"
-import { Button } from "../../components/Button"
+import { TotalPlayers } from "./TotalPlayers"
+import { PlayerStatus } from "./PlayerStatus"
+import { LobbyInput } from "./LobbyInput"
+import { OtherPlayers } from "./OtherPlayers"
+import { ReadyPlayers } from "./ReadyPlayers"
 
 const LobbyContainer = styled.div`
   display: flex;
@@ -21,14 +24,6 @@ const LobbyWrapper = styled.div`
     props.isOtherPlayersExists ? "space-between" : "center"};
   align-items: center;
 `
-const LobbyTotalPlayersContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: end;
-`
-const LobbyTotalPlayerText = styled.p`
-  font-weight: bold;
-`
 const LobbyBodyContainer = styled.div`
   display: flex;
   height: 50%;
@@ -37,88 +32,68 @@ const LobbyBodyContainer = styled.div`
   flex-direction: column;
 `
 
-const OtherPlayersContainer = styled.div`
-  align-self: flex-start;
-  max-height: 200px;
-  overflow-y: auto;
-  margin: 1em;
-`
-
-const ReadyPlayersContainer = styled.div`
-  align-self: end;
-`
-const PlayerStatusText = styled.p`
-  color: #3679fc;
-  font-weight: bold;
-`
-
 export const LobbyScreen = () => {
+  const [username, setUsername] = React.useState("")
+
   const { player, updatePlayer, players } = useContext(GameContext)
-  const totalPlayers = players.length
   const playerName = player?.username
     ? player.username.length > 0
       ? player.username
       : player.id
     : player.id
 
-  const otherPlayers = players
-    .filter(({ id }) => id !== player.id)
-    .map(({ id, username, isReady }, index) => (
-      <div key={index}>
-        <p>
-          {username ? (username.length > 0 ? username : id) : id} /
-          {isReady ? "Ready" : "Not Ready"}
-        </p>
-      </div>
-    ))
+  const isPlayerReady = player.isReady
 
-  const countPlayerThatReady = players.filter(
-    ({ id, isReady }) => id !== player.id && isReady === true
+  const numberOfTotalPlayers = players.length
+  const otherPlayers = players.filter(({ id }) => id !== player.id)
+
+  const numberOfPlayersThatIsReady = players.filter(
+    ({ isReady }) => isReady === true
   ).length
+
+  const status = isPlayerReady ? "Ready" : "Not Ready"
+
+  const handleChangeOnUsername = (e) => {
+    setUsername(e.target.value)
+  }
+
+  const handleUserNameSubmit = (e) => {
+    e.preventDefault()
+    updatePlayer("username", username)
+  }
+
+  const handleReady = () => {
+    if (isPlayerReady) {
+      return updatePlayer("isReady", false)
+    }
+    return updatePlayer("isReady", true)
+  }
+
+  const isShowOtherPlayers = otherPlayers.length > 0
 
   return (
     <LobbyContainer>
       <LobbyWrapper isOtherPlayersExists={players.length > 1}>
-        <LobbyTotalPlayersContainer>
-          <LobbyTotalPlayerText>
-            Total Players : {totalPlayers}
-          </LobbyTotalPlayerText>
-        </LobbyTotalPlayersContainer>
+        <TotalPlayers numberOfTotalPlayers={numberOfTotalPlayers} />
         <LobbyBodyContainer>
-          <PlayerStatusText>
-            Status :{player.isReady ? "Ready" : "Not Ready"}
-          </PlayerStatusText>
-          <PlayerStatusText>You : {playerName}</PlayerStatusText>
-          <UpdateUserNameForm />
-          <Button
-            style={{
-              backgroundColor: player.isReady ? "#f30" : "#BDE5A4",
-              color: player.isReady ? "#fff" : "#000"
-            }}
-            onClick={() =>
-              player.isReady
-                ? updatePlayer("isReady", false)
-                : updatePlayer("isReady", true)
-            }
-          >
-            {player.isReady ? "Not Ready" : "Ready"}
-          </Button>
+          <PlayerStatus status={status} playerName={playerName} />
+          <LobbyInput
+            handleChangeOnUsername={handleChangeOnUsername}
+            handleUserNameSubmit={handleUserNameSubmit}
+            handleReady={handleReady}
+            isPlayerReady={isPlayerReady}
+            playerId={player.id}
+            status={status}
+          />
         </LobbyBodyContainer>
-        {otherPlayers.length > 0 ? (
+        {isShowOtherPlayers && (
           <>
-            <OtherPlayersContainer>
-              <LobbyTotalPlayerText>
-                Other players / Status : {otherPlayers}
-              </LobbyTotalPlayerText>
-            </OtherPlayersContainer>
-
-            <ReadyPlayersContainer>
-              <LobbyTotalPlayerText>
-                Ready players: {countPlayerThatReady}
-              </LobbyTotalPlayerText>
-            </ReadyPlayersContainer>
+            <OtherPlayers otherPlayers={otherPlayers} />
+            <ReadyPlayers
+              numberOfPlayersThatIsReady={numberOfPlayersThatIsReady}
+            />
           </>
-        ) : null}
+        )}
       </LobbyWrapper>
     </LobbyContainer>
   )

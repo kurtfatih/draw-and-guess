@@ -1,10 +1,19 @@
 import * as React from "react"
 import styled from "styled-components"
+import {
+  primaryColor,
+  secondaryColor,
+  successColor,
+  dangerColor
+} from "../constants/styles"
 
-const ButtonContainer = styled.button`
+const ButtonComponent = styled.button`
   border: 0;
   padding: 1em;
-  background-color: #BDE5A4;
+  background-color: ${(p) => p.isPrimary && primaryColor};
+  background-color: ${(p) => p.isSecondary && secondaryColor};
+  background-color: ${(p) => p.isSuccess && successColor};
+  background-color: ${(p) => p.isDanger && dangerColor};
   border-radius: 10px;
   font-weight: bold;
   border-top-width: 1px;
@@ -14,5 +23,5 @@ const ButtonContainer = styled.button`
 }
 `
 export const Button = (props) => {
-  return <ButtonContainer {...props}>{props.children}</ButtonContainer>
+  return <ButtonComponent {...props}>{props.children}</ButtonComponent>
 }
