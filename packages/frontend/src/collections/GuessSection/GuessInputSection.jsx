@@ -3,12 +3,14 @@ import styled from "styled-components"
 import { Button } from "../../components/Button"
 
 const GuessInputSectionContainer = styled.div`
-  height: 10%;
+  height: 30%;
   display: flex;
   align-items: center;
+  width: 100%;
+  margin: 1em;
 `
 const Input = styled.input`
-  width: 50%;
+  width: 60%;
   border: 0;
   background-color: #fff;
   border-radius: 10px;
@@ -51,7 +53,8 @@ export function GuessInputSection({
         <Button
           disabled={isDisabled}
           type="submit"
-          style={{ backgroundColor: "#F8CB02", width: "200px" }}
+          isSuccess
+          style={{ color: "#000", width: "100px" }}
         >
           Send
         </Button>

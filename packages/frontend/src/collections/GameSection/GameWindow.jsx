@@ -2,16 +2,21 @@ import React, { useContext } from "react"
 
 import { usePlayer } from "../../hooks/usePlayer"
 import { GameContext } from "../../context/GameContext"
-export const GAME_WINDOW_WIDTH = 600
-export const GAME_WINDOW_HEIGHT = 400
+export const GAME_WINDOW_WIDTH = 800
+export const GAME_WINDOW_HEIGHT = 500
 const GameWindow = () => {
   const [ctx, setCtx] = React.useState()
 
   const { gameCountDownTimerValue, drawer, player, activeSocket } =
     useContext(GameContext)
-  const [startStopDraw, draw] = usePlayer(activeSocket, ctx)
 
   const gameWindowRef = React.useRef()
+  const [startStopDraw, draw] = usePlayer(
+    activeSocket,
+    ctx,
+    gameWindowRef.width,
+    gameWindowRef.height
+  )
 
   React.useEffect(() => {
     if (!gameWindowRef.current) return
@@ -31,7 +36,8 @@ const GameWindow = () => {
       style={{
         border: "5px solid #000",
         width: GAME_WINDOW_WIDTH,
-        height: GAME_WINDOW_HEIGHT
+        height: GAME_WINDOW_HEIGHT,
+        backgroundColor: "white"
       }}
     />
   )

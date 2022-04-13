@@ -17,7 +17,7 @@ const RoomContainer = styled.div`
   flex-wrap: wrap-reverse;
 `
 const RoomLeftContainer = styled.div`
-  width: 20%;
+  width: 25%;
   min-width: 300px;
 `
 
@@ -27,6 +27,7 @@ const RoomRightContainer = styled.div`
   width: 60%;
   height: 100%;
   justify-content: space-between;
+  align-items: center;
 `
 
 export const RoomScreen = () => {
@@ -62,26 +63,37 @@ export const RoomScreen = () => {
         </RoomLeftContainer>
         <RoomRightContainer id="right">
           <div
+            id="top"
+            style={{ display: "flex", width: "100%", justifyContent: "center" }}
+          >
+            <GameWindow />
+          </div>
+          <div
+            id="bottom"
             style={{
-              height: "70%",
-              width: "100%",
+              display: "flex",
+              width: "60%",
+              flexDirection: "column",
+              height: "20%",
+              justifyContent: "space-around",
+              alignItems: "center",
               backgroundColor: "#fff",
+              padding: "1em",
               borderRadius: "10px",
               boxShadow:
                 "rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px"
             }}
           >
-            {/* <GameWindow /> */}
+            <GuessChat chatMessages={messages} />
+            <GuessInputSection
+              isDisabled={
+                prevAnswer.current === answer.toLocaleLowerCase() ||
+                !isShowGuessChat
+              }
+              handleSubmit={handleSubmit}
+              handleGuessChange={handleGuessChange}
+            />
           </div>
-          <GuessChat chatMessages={messages} />
-          <GuessInputSection
-            isDisabled={
-              prevAnswer.current === answer.toLocaleLowerCase() ||
-              !isShowGuessChat
-            }
-            handleSubmit={handleSubmit}
-            handleGuessChange={handleGuessChange}
-          />
         </RoomRightContainer>
 
         <ProgressBar value={gameCountDownTimerValue} />
