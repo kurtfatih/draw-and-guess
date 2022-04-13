@@ -16,14 +16,27 @@ const Input = styled.input`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  height: 70%;
 `
 const NickNameForm = styled.form`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
-export const LobbyInput = ({ isPlayerReady, status, playerId }) => {
+const SaveButtonContainer = styled.div`
+  width: 20%;
+  align-self: center;
+  margin: 1em;
+`
+
+const ReadyButtonContainer = styled.div`
+  width: 60%;
+  align-self: center;
+`
+
+export const LobbyInput = ({ isPlayerReady, playerId }) => {
   const [username, setUsername] = React.useState("")
   const { updatePlayer } = useContext(GameContext)
   const handleChangeOnUsername = (e) => {
@@ -39,27 +52,31 @@ export const LobbyInput = ({ isPlayerReady, status, playerId }) => {
     }
     return updatePlayer("isReady", true)
   }
+  const buttonStatusText = isPlayerReady ? "Not Ready" : "Ready"
 
   return (
     <InputContainer>
-      <NormalText>Nickname :</NormalText>
       <NickNameForm onSubmit={handleUserNameSubmit}>
         <Input
           onChange={handleChangeOnUsername}
           type="name"
           placeholder={playerId}
         />
-        <Button style={{ backgroundColor: "#F8CB02" }}>
-          <img alt="save_icon" width="25px" src={SaveIcon} />
-        </Button>
+        <SaveButtonContainer>
+          <Button style={{ backgroundColor: "#F8CB02" }}>
+            <img alt="save_icon" width="25px" src={SaveIcon} />
+          </Button>
+        </SaveButtonContainer>
       </NickNameForm>
-      <Button
-        isSuccess={!isPlayerReady}
-        isDanger={isPlayerReady}
-        onClick={handleReady}
-      >
-        {status}
-      </Button>
+      <ReadyButtonContainer>
+        <Button
+          isSuccess={!isPlayerReady}
+          isDanger={isPlayerReady}
+          onClick={handleReady}
+        >
+          {buttonStatusText}
+        </Button>
+      </ReadyButtonContainer>
     </InputContainer>
   )
 }

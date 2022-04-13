@@ -19,8 +19,9 @@ const ButtonComponent = styled.button`
   border-top-width: 1px;
   border-bottom-width: 1px;
   box-shadow: 0 0 0 3px #002043, 0 0 0 4px #7c92b0;
-  cursor:pointer;
-}
+  cursor: pointer;
+  min-width: 100px;
+  width: 100%;
 `
 export const Button = (props) => {
   return <ButtonComponent {...props}>{props.children}</ButtonComponent>

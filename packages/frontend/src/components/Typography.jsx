@@ -7,6 +7,7 @@ import {
 } from "../constants/styles"
 
 const DefaultText = styled.p`
+  margin: 0;
   color: #000;
   color: ${(p) => p.isPrimary && primaryColor};
   color: ${(p) => p.isSecondary && secondaryColor};

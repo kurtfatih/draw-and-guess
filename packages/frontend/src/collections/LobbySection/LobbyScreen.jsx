@@ -20,16 +20,33 @@ const LobbyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   justify-content: ${(props) =>
     props.isOtherPlayersExists ? "space-between" : "center"};
   align-items: center;
 `
+
 const LobbyBodyContainer = styled.div`
   display: flex;
   height: 50%;
   width: 60%;
   justify-content: space-between;
   flex-direction: column;
+`
+
+const LobbyBottomContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 20%;
+  min-height: 20%;
+  justify-content: space-between;
+`
+
+const LobbyTotalPlayersContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  height: 5%;
 `
 
 export const LobbyScreen = () => {
@@ -52,22 +69,20 @@ export const LobbyScreen = () => {
   return (
     <LobbyContainer>
       <LobbyWrapper isOtherPlayersExists={players.length > 1}>
-        <TotalPlayers numberOfTotalPlayers={numberOfTotalPlayers} />
+        <LobbyTotalPlayersContainer>
+          <TotalPlayers numberOfTotalPlayers={numberOfTotalPlayers} />
+        </LobbyTotalPlayersContainer>
         <LobbyBodyContainer>
           <PlayerStatus status={status} playerName={playerName} />
-          <LobbyInput
-            isPlayerReady={isPlayerReady}
-            playerId={player.id}
-            status={status}
-          />
+          <LobbyInput isPlayerReady={isPlayerReady} playerId={player.id} />
         </LobbyBodyContainer>
         {isShowOtherPlayers && (
-          <>
+          <LobbyBottomContainer>
             <OtherPlayers otherPlayers={otherPlayers} />
             <ReadyPlayers
               numberOfPlayersThatIsReady={numberOfPlayersThatIsReady}
             />
-          </>
+          </LobbyBottomContainer>
         )}
       </LobbyWrapper>
     </LobbyContainer>
