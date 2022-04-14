@@ -6,20 +6,20 @@ export const ProgressBar = ({ value }) => {
       style={{
         display: "flex",
         width: "100%",
-        justifyContent: "center",
-        height: "5px",
+        height: "10px",
         position: "fixed",
         left: 0,
-        top: 0
+        top: 0,
+        justifyContent: "center"
       }}
     >
       <span
         style={{
-          background: "red",
-          height: "5px",
+          height: "9px",
+          border: "2px solid #000",
+          borderRadius: "10px",
           width: `${value}%`,
-          border: "5px solid black",
-          borderRadius: "10px"
+          backgroundColor: "#f30"
         }}
       ></span>
     </div>

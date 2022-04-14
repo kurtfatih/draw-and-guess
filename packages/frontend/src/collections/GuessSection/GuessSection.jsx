@@ -1,46 +1,27 @@
 import React, { useContext } from "react"
 
-import styled from "styled-components"
+import { NormalText } from "../../components/Typography"
 import { GameContext } from "../../context/GameContext"
 
-const GuessContainer = styled.div`
-  display: flex;
-  height: 85%;
-  padding: 1em;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  overflow-y: auto;
-`
-
-const YourPointsText = styled.p`
-  font-weight: bold;
-`
-const OtherPointsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-`
 export function GuessSection() {
   const { player, players } = useContext(GameContext)
 
   return (
-    <GuessContainer id="guess-container">
-      <YourPointsText>Your points : {player.points}</YourPointsText>
-      <OtherPointsContainer>
-        <p>Others points :</p>
-        {players
-          .filter(({ id }) => id !== player.id)
-          .map((players) => (
-            <YourPointsText>
+    <div>
+      <NormalText>Points / Players</NormalText>
+      {players
+        .filter(({ id }) => id !== player.id)
+        .map((players) => (
+          <div>
+            <NormalText isBold>
               {players.points} /
-              {players.username.length > 0 ? players.username : players.id}
-            </YourPointsText>
-          ))}
-      </OtherPointsContainer>
-    </GuessContainer>
+              {players.username.length > 0
+                ? players.username
+                : players.id.substring(0, 10) + "..."}
+            </NormalText>
+          </div>
+        ))}
+    </div>
   )
 }
 

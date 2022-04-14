@@ -29,9 +29,5 @@ export function GameScreen() {
     </>
   )
 
-  // return (
-  //   <>
-  //     <RoomScreen />
-  //   </>
-  // )
+  // return <RoomScreen />
 }
