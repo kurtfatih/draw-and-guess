@@ -8,7 +8,8 @@ export function GuessSection() {
 
   return (
     <div>
-      <NormalText>Points / Players</NormalText>
+      <NormalText isBold>Your points : {player.points} </NormalText>
+      <NormalText>Points / Players :</NormalText>
       {players
         .filter(({ id }) => id !== player.id)
         .map((players) => (
