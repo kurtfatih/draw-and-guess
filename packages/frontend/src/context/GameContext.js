@@ -110,6 +110,7 @@ const GameContextProvider = ({ children }) => {
       sleep(5000).then(() => {
         setIsWinnerScreen(false)
         setWinner([])
+        setMessages([])
       })
     })
   }, [activeSocket, decideWinner, updatePlayer])
