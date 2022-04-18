@@ -21,7 +21,7 @@ const SendMessageForm = styled.form`
   justify-content: space-around;
   height: 20%;
 `
-export function GuessInputSection({
+export function GuessChatForm({
   handleSubmit,
   handleGuessChange,
   value,

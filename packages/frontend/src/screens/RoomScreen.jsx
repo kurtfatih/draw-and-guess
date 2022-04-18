@@ -1,14 +1,13 @@
 import * as React from "react"
-import GameWindow from "../GameSection/GameWindow"
-import { GuessSection } from "../GuessSection/GuessSection"
-import { GuessInputSection } from "../GuessSection/GuessInputSection"
+import GameWindow from "../sections/Room/GameWindow"
+import { GuessSection } from "../sections/Room/GuessSection"
+import { GuessChatForm } from "../collections/Forms/GuessForm"
 import styled from "styled-components"
 import { useContext } from "react"
-import { GameContext } from "../../context/GameContext"
-import { ProgressBar } from "../../components/ProgressBar"
-import { GuessChat } from "../GuessSection/GuessChat"
-import { useEffect } from "react"
-import { NormalText } from "../../components/Typography"
+import { GameContext } from "../context/GameContext"
+import { ProgressBar } from "../components/ProgressBar"
+import { GuessChat } from "../sections/Room/GuessChat"
+import { NormalText } from "../components/Typography"
 
 const RoomContainer = styled.div`
   width: 70%;
@@ -99,7 +98,7 @@ export const RoomScreen = () => {
         <RoomRightBottomContainer id="room-right-bottom">
           <NormalText style={{ fontSize: "0.8rem" }}>Chat:</NormalText>
           <GuessChat chatMessages={messages} />
-          <GuessInputSection
+          <GuessChatForm
             handleSubmit={handleSubmit}
             handleGuessChange={handleGuessChange}
             isDisabled={isChatDisabled}

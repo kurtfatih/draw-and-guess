@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
-import { GameContext } from "../../context/GameContext"
+import { GameContext } from "../context/GameContext"
 import styled from "styled-components"
-import { LargeText, NormalText } from "../../components/Typography"
+import { LargeText, NormalText } from "../components/Typography"
 const WinnerScreenContainer = styled.div`
   display: flex;
   background-color: #fff;

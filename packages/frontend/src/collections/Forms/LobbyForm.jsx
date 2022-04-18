@@ -36,7 +36,7 @@ const ReadyButtonContainer = styled.div`
   align-self: center;
 `
 
-export const LobbyInput = ({ isPlayerReady, playerId }) => {
+export const LobbyForm = ({ isPlayerReady, playerId }) => {
   const [username, setUsername] = React.useState("")
   const { updatePlayer } = useContext(GameContext)
   const handleChangeOnUsername = (e) => {

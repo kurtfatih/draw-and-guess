@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
-import { GameContext } from "../../context/GameContext"
+import * as React from "react"
 import styled from "styled-components"
+
 import { TotalPlayers } from "./TotalPlayers"
 import { PlayerStatus } from "./PlayerStatus"
-import { LobbyInput } from "./LobbyInput"
+import { LobbyForm } from "../../collections/Forms/LobbyForm"
 import { OtherPlayers } from "./OtherPlayers"
 import { ReadyPlayers } from "./ReadyPlayers"
 
@@ -16,13 +16,14 @@ const LobbyContainer = styled.div`
   padding: 3em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 `
+
 const LobbyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: ${(props) =>
-    props.isOtherPlayersExists ? "space-between" : "center"};
+    props.isShowOtherPlayers ? "space-between" : "center"};
   align-items: center;
 `
 
@@ -49,32 +50,28 @@ const LobbyTotalPlayersContainer = styled.div`
   height: 5%;
 `
 
-export const LobbyScreen = () => {
-  const { player, players } = useContext(GameContext)
-  const playerName = player?.username
-    ? player.username.length > 0
-      ? player.username
-      : player.id
-    : player.id
-
-  const isPlayerReady = player.isReady
-  const numberOfTotalPlayers = players.length
-  const otherPlayers = players.filter(({ id }) => id !== player.id)
-  const numberOfPlayersThatIsReady = players.filter(
-    ({ isReady }) => isReady === true
-  ).length
-  const status = isPlayerReady ? "Ready" : "Not Ready"
-  const isShowOtherPlayers = otherPlayers.length > 0
-
+export const LobbySection = ({
+  numberOfTotalPlayers,
+  currentPlayerStatus,
+  playerName,
+  playerId,
+  isShowOtherPlayers,
+  isPlayerReady,
+  otherPlayers,
+  numberOfPlayersThatIsReady
+}) => {
   return (
     <LobbyContainer>
-      <LobbyWrapper isOtherPlayersExists={players.length > 1}>
+      <LobbyWrapper isShowOtherPlayers={isShowOtherPlayers}>
         <LobbyTotalPlayersContainer>
           <TotalPlayers numberOfTotalPlayers={numberOfTotalPlayers} />
         </LobbyTotalPlayersContainer>
         <LobbyBodyContainer>
-          <PlayerStatus status={status} playerName={playerName} />
-          <LobbyInput isPlayerReady={isPlayerReady} playerId={player.id} />
+          <PlayerStatus
+            currentPlayerStatus={currentPlayerStatus}
+            playerName={playerName}
+          />
+          <LobbyForm isPlayerReady={isPlayerReady} playerId={playerId} />
         </LobbyBodyContainer>
         {isShowOtherPlayers && (
           <LobbyBottomContainer>

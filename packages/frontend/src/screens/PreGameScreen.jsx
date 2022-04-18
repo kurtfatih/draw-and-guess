@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { GameContext } from "../../context/GameContext"
+import { GameContext } from "../context/GameContext"
 import styled from "styled-components"
 
 const PreGameScreenContainer = styled.div`
@@ -48,14 +48,3 @@ export const PreGameScreen = () => {
     </PreGameScreenContainer>
   )
 }
-
-// {/* {isDrawer ? ( */}
-// {/* <div>
-//     You will draw "{answer.toUpperCase()}" next round start in 5
-//     second....
-//   </div> */}
-// {/* ) : ( */}
-// {/* <div>
-//   Next drawer will be {nextDrawer} next round start in 5 second...
-//   </div> */}
-// {/* )} */}

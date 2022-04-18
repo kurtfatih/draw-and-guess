@@ -8,11 +8,11 @@ const PlayerStatusContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `
-export const PlayerStatus = ({ status, playerName }) => {
+export const PlayerStatus = ({ currentPlayerStatus, playerName }) => {
   return (
     <PlayerStatusContainer>
       <NormalText isBold isPrimary>
-        Status :{status}
+        Status :{currentPlayerStatus}
       </NormalText>
       <NormalText isBold isPrimary>
         You : {playerName}
