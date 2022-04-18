@@ -120,6 +120,7 @@ const GameContextProvider = ({ children }) => {
     if (!isGameStarted) {
       activeSocket.emit(GAME_START)
       setIsGameStarted(true)
+      updatePlayer("isReady", false)
     }
     activeSocket.emit(GAME_NEXT_ROUND)
 
@@ -130,7 +131,7 @@ const GameContextProvider = ({ children }) => {
       setIsPreScreen(false)
       setGameCountDownTimerValue(GAME_TIMER)
     })
-  }, [activeSocket, decideAnswerValue, isGameStarted, pickDrawer])
+  }, [activeSocket, decideAnswerValue, isGameStarted, pickDrawer, updatePlayer])
 
   useEffect(() => {
     if (!activeSocket) return
