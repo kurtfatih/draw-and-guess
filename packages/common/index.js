@@ -9,7 +9,7 @@ export const GAME_NEXT_ROUND = "game:next-round"
 export const GAME_SET_ANSWER = "game:set-answer"
 export const GAME_SET_TIMER = "game:set-timer"
 export const GAME_SEND_ANSWER = "game:send-answer"
-export const GAME_TIMER = 60
+export const GAME_TIMER = 30
 
 export const pictionaryWordsArr = [
   "Back seat",
