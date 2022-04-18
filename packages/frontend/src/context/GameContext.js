@@ -40,7 +40,6 @@ const GameContextProvider = ({ children }) => {
   const [isGameStarted, setIsGameStarted] = React.useState(false)
   const [gameCountDownTimerValue, setGameCountDownTimerValue] =
     React.useState(0)
-  console.log("gamecount", gameCountDownTimerValue)
 
   const activeTurnCount = React.useRef(0)
   const activeInterval = React.useRef()

@@ -4,7 +4,6 @@ import { isProduction } from "../utils/isProduction"
 
 export const SocketContext = createContext()
 
-console.log("debug", isProduction, process.env.REACT_APP_SERVER_URL)
 const SocketProvider = ({ children }) => {
   const [activeSocket, setActiveSocket] = React.useState()
 

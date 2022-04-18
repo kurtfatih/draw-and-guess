@@ -22,7 +22,6 @@ import {
 const isProduction = process.env.NODE_ENV === "production"
 
 const app = express()
-console.log(isProduction, process.env.CLIENT_URL)
 const port = isProduction ? process.env.PORT : 8000
 const origin = isProduction ? process.env.CLIENT_URL : "http://localhost:3000"
 const methods = ["GET", "POST"]
