@@ -7,6 +7,42 @@ import { LobbyForm } from "../../collections/Forms/LobbyForm"
 import { OtherPlayers } from "../../collections/Lobby/OtherPlayers"
 import { ReadyPlayers } from "../../collections/Lobby/ReadyPlayers"
 
+export const LobbySection = ({
+  numberOfTotalPlayers,
+  currentPlayerStatus,
+  playerName,
+  playerId,
+  isShowOtherPlayers,
+  isPlayerReady,
+  otherPlayers,
+  numberOfPlayersThatIsReady
+}) => {
+  return (
+    <LobbyContainer>
+      <LobbyWrapper isShowOtherPlayers={isShowOtherPlayers}>
+        <LobbyTotalPlayersContainer>
+          <TotalPlayers numberOfTotalPlayers={numberOfTotalPlayers} />
+        </LobbyTotalPlayersContainer>
+        <LobbyBodyContainer>
+          <PlayerStatus
+            currentPlayerStatus={currentPlayerStatus}
+            playerName={playerName}
+          />
+          <LobbyForm isPlayerReady={isPlayerReady} playerId={playerId} />
+        </LobbyBodyContainer>
+        {isShowOtherPlayers && (
+          <LobbyBottomContainer>
+            <OtherPlayers otherPlayers={otherPlayers} />
+            <ReadyPlayers
+              numberOfPlayersThatIsReady={numberOfPlayersThatIsReady}
+            />
+          </LobbyBottomContainer>
+        )}
+      </LobbyWrapper>
+    </LobbyContainer>
+  )
+}
+
 const LobbyContainer = styled.div`
   display: flex;
   width: 75%;
@@ -49,39 +85,3 @@ const LobbyTotalPlayersContainer = styled.div`
   justify-content: end;
   height: 5%;
 `
-
-export const LobbySection = ({
-  numberOfTotalPlayers,
-  currentPlayerStatus,
-  playerName,
-  playerId,
-  isShowOtherPlayers,
-  isPlayerReady,
-  otherPlayers,
-  numberOfPlayersThatIsReady
-}) => {
-  return (
-    <LobbyContainer>
-      <LobbyWrapper isShowOtherPlayers={isShowOtherPlayers}>
-        <LobbyTotalPlayersContainer>
-          <TotalPlayers numberOfTotalPlayers={numberOfTotalPlayers} />
-        </LobbyTotalPlayersContainer>
-        <LobbyBodyContainer>
-          <PlayerStatus
-            currentPlayerStatus={currentPlayerStatus}
-            playerName={playerName}
-          />
-          <LobbyForm isPlayerReady={isPlayerReady} playerId={playerId} />
-        </LobbyBodyContainer>
-        {isShowOtherPlayers && (
-          <LobbyBottomContainer>
-            <OtherPlayers otherPlayers={otherPlayers} />
-            <ReadyPlayers
-              numberOfPlayersThatIsReady={numberOfPlayersThatIsReady}
-            />
-          </LobbyBottomContainer>
-        )}
-      </LobbyWrapper>
-    </LobbyContainer>
-  )
-}
