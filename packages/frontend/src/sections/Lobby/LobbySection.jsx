@@ -1,11 +1,11 @@
 import * as React from "react"
 import styled from "styled-components"
 
-import { TotalPlayers } from "./TotalPlayers"
-import { PlayerStatus } from "./PlayerStatus"
+import { TotalPlayers } from "../../collections/Lobby/TotalPlayers"
+import { PlayerStatus } from "../../collections/Lobby/PlayerStatus"
 import { LobbyForm } from "../../collections/Forms/LobbyForm"
-import { OtherPlayers } from "./OtherPlayers"
-import { ReadyPlayers } from "./ReadyPlayers"
+import { OtherPlayers } from "../../collections/Lobby/OtherPlayers"
+import { ReadyPlayers } from "../../collections/Lobby/ReadyPlayers"
 
 const LobbyContainer = styled.div`
   display: flex;
