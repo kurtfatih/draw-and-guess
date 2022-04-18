@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { Button } from "../../components/Button"
 
 const Input = styled.input`
   width: 60%;

@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { NormalText } from "../../components/Typography"
 import { Button } from "../../components/Button"
 import SaveIcon from "../../assets/save.svg"
 import { GameContext } from "../../context/GameContext"
