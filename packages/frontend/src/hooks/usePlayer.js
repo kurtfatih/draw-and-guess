@@ -8,7 +8,7 @@ import React from "react"
 import {
   GAME_WINDOW_HEIGHT,
   GAME_WINDOW_WIDTH
-} from "../sections/Room/GameWindow"
+} from "../collections/Room/GameWindow"
 
 export function usePlayer(playerAction, ctx) {
   const [isDrawing, setIsDrawing] = React.useState(false)
