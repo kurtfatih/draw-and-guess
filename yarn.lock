@@ -1126,6 +1126,10 @@
   dependencies:
     postcss-value-parser "^4.2.0"
 
+"@draw-and-guess/common@https://gitpkg.now.sh/kurtfatih/draw-and-guess/packages/common?master":
+  version "1.0.0"
+  resolved "https://gitpkg.now.sh/kurtfatih/draw-and-guess/packages/common?master#983b8e4c8d49025891becd4da9d6e6dd681e2052"
+
 "@emotion/is-prop-valid@^1.1.0":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.1.2.tgz#34ad6e98e871aa6f7a20469b602911b8b11b3a95"
