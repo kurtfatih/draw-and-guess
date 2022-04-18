@@ -1,3 +1,4 @@
+import "dotenv/config"
 import { Server } from "socket.io"
 import express from "express"
 import http from "http"
@@ -18,14 +19,18 @@ import {
   PLAYER_SET
 } from "@draw-and-guess/common"
 
+const isProduction = process.env.NODE_ENV === "production"
+
 const app = express()
-const port = 8000
+const port = isProduction ? process.env.PORT : 8000
+const origin = isProduction ? process.env.CLIENT_URL : "http://localhost:3000"
+const methods = ["GET", "POST"]
 const server = http.createServer(app)
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"]
+    origin,
+    methods
   }
 })
 
