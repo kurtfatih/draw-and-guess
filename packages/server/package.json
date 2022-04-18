@@ -16,7 +16,7 @@
     "socket.io": "^4.4.1"
   },
   "devDependencies": {
-    "@draw-and-guess/common": "git+https://github.com/kurtfatih/draw-and-guess/tree/master/packages/common"
+    "@draw-and-guess/common": "file:../common"
   },
   "engines": {
     "node": "17.x"
