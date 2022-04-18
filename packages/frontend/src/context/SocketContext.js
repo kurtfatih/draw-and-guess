@@ -9,7 +9,9 @@ const SocketProvider = ({ children }) => {
   const [activeSocket, setActiveSocket] = React.useState()
 
   useEffect(() => {
-    const socket = io(isProduction ? process.env.SERVER_URL : "localhost:8000")
+    const socket = io(
+      isProduction ? process.env.REACT_APP_SERVER_URL : "localhost:8000"
+    )
     socket.on("connect", () => {
       setActiveSocket(socket)
     })

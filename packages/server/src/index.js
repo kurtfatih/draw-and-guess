@@ -40,6 +40,7 @@ const main = async () => {
   })
 
   io.on("connection", (socket) => {
+    console.log("connection", socket.id)
     // socket init
     socket.join("lobby")
 
