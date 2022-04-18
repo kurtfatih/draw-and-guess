@@ -9,6 +9,7 @@ import {
   GAME_NEXT_ROUND,
   GAME_SEND_ANSWER,
   GAME_SET_ANSWER,
+  GAME_SET_TIMER,
   GAME_START,
   GAME_START_DRAW,
   GAME_STOP,
@@ -68,6 +69,10 @@ const main = async () => {
 
     socket.on(GAME_SEND_ANSWER, (answer) => {
       gameController.sendAnswer(answer, io)
+    })
+
+    socket.on(GAME_SET_TIMER, (time) => {
+      gameController.setTimer(time, socket)
     })
 
     socket.on(GAME_SET_ANSWER, (randomNumber) => {

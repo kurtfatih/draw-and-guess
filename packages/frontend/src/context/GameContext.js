@@ -10,7 +10,8 @@ import {
   PLAYER_SET,
   GAME_STOP,
   GAME_START,
-  GAME_NEXT_ROUND
+  GAME_NEXT_ROUND,
+  GAME_SET_TIMER
 } from "@draw-and-guess/common"
 
 import { generateRandomNumber } from "../utils/generateRandomNumber"
@@ -39,6 +40,7 @@ const GameContextProvider = ({ children }) => {
   const [isGameStarted, setIsGameStarted] = React.useState(false)
   const [gameCountDownTimerValue, setGameCountDownTimerValue] =
     React.useState(0)
+  console.log("gamecount", gameCountDownTimerValue)
 
   const activeTurnCount = React.useRef(0)
   const activeInterval = React.useRef()
@@ -71,6 +73,14 @@ const GameContextProvider = ({ children }) => {
     },
     [activeSocket]
   )
+
+  const setTimer = React.useCallback(() => {
+    setGameCountDownTimerValue((prevState) => {
+      console.log(prevState - 1)
+      activeSocket.emit(GAME_SET_TIMER, prevState - 1)
+      return prevState - 1
+    })
+  }, [activeSocket])
 
   const pickDrawer = React.useCallback(() => {
     const nextDrawer = players[activeTurnCount.current]
@@ -152,6 +162,19 @@ const GameContextProvider = ({ children }) => {
       initGame()
     }
   }, [initGame, isGameStarted, isPreScreen, isWinnerScreen, players])
+
+  //game timer
+  useEffect(() => {
+    if (!activeSocket) return
+    if (!isGameStarted) return
+    const timer = (time) => {
+      setGameCountDownTimerValue(time)
+    }
+    activeSocket.on(GAME_SET_TIMER, timer)
+    return () => {
+      activeSocket.off(GAME_SET_TIMER, timer)
+    }
+  }, [activeSocket, isGameStarted])
 
   // player set
   useEffect(() => {
@@ -241,8 +264,8 @@ const GameContextProvider = ({ children }) => {
   useEffect(() => {
     if (!isGameStarted || isPreScreen || isWinnerScreen) return
     const intervalId = setInterval(() => {
-      if (gameCountDownTimerValue !== 0) {
-        setGameCountDownTimerValue((prevState) => prevState - 1)
+      if (gameCountDownTimerValue !== 0 && player.id === drawer.id) {
+        setTimer()
       }
       if (gameCountDownTimerValue === 0) {
         if (activeTurnCount.current === players.length - 1) {
@@ -255,12 +278,15 @@ const GameContextProvider = ({ children }) => {
     activeInterval.current = intervalId
     return () => clearInterval(intervalId)
   }, [
+    drawer.id,
     gameCountDownTimerValue,
     initGame,
     isGameStarted,
     isPreScreen,
     isWinnerScreen,
+    player.id,
     players.length,
+    setTimer,
     stopGame
   ])
 

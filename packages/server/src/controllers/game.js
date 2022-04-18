@@ -2,6 +2,7 @@ import {
   GAME_NEXT_ROUND,
   GAME_SEND_ANSWER,
   GAME_SET_ANSWER,
+  GAME_SET_TIMER,
   GAME_START_DRAW,
   pictionaryWordsArr
 } from "@draw-and-guess/common"
@@ -23,6 +24,10 @@ export const gameController = Object.freeze({
   },
   startDraw: (socket, cordinates) => {
     socket.broadcast.to("room1").emit(GAME_START_DRAW, cordinates)
+  },
+  setTimer: (time, socket) => {
+    console.log(time)
+    socket.broadcast.to("room1").emit(GAME_SET_TIMER, time)
   },
   setAnswer: (randomNumber, io) => {
     const answer = pictionaryWordsArr[randomNumber]
