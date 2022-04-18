@@ -134,7 +134,7 @@ const GameContextProvider = ({ children }) => {
 
     sleep(5000).then(() => {
       setIsPreScreen(false)
-      setGameCountDownTimerValue(GAME_TIMER)
+      setGameCountDownTimerValue(30)
     })
   }, [activeSocket, decideAnswerValue, isGameStarted, pickDrawer, updatePlayer])
 
