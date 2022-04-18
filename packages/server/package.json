@@ -9,7 +9,7 @@
     "start:dev": "cross-env NODE_ENV=dev nodemon src/index.js"
   },
   "dependencies": {
-    "@draw-and-guess/common": "1.0.0",
+    "@draw-and-guess/common": "https://gitpkg.now.sh/kurtfatih/draw-and-guess/packages/common?master",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
@@ -17,6 +17,6 @@
     "socket.io": "^4.4.1"
   },
   "engines": {
-    "node": "16.x"
+    "node": "17.x"
   }
 }
