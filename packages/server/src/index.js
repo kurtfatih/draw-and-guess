@@ -72,7 +72,7 @@ const main = async () => {
     })
 
     socket.on(GAME_SET_TIMER, (time) => {
-      gameController.setTimer(time, socket)
+      gameController.setTimer(time, io)
     })
 
     socket.on(GAME_SET_ANSWER, (randomNumber) => {

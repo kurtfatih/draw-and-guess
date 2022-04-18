@@ -25,9 +25,8 @@ export const gameController = Object.freeze({
   startDraw: (socket, cordinates) => {
     socket.broadcast.to("room1").emit(GAME_START_DRAW, cordinates)
   },
-  setTimer: (time, socket) => {
-    console.log(time)
-    socket.broadcast.to("room1").emit(GAME_SET_TIMER, time)
+  setTimer: (time, io) => {
+    io.to("room1").emit(GAME_SET_TIMER, time)
   },
   setAnswer: (randomNumber, io) => {
     const answer = pictionaryWordsArr[randomNumber]

@@ -75,12 +75,8 @@ const GameContextProvider = ({ children }) => {
   )
 
   const setTimer = React.useCallback(() => {
-    setGameCountDownTimerValue((prevState) => {
-      console.log(prevState - 1)
-      activeSocket.emit(GAME_SET_TIMER, prevState - 1)
-      return prevState - 1
-    })
-  }, [activeSocket])
+    activeSocket.emit(GAME_SET_TIMER, gameCountDownTimerValue - 1)
+  }, [activeSocket, gameCountDownTimerValue])
 
   const pickDrawer = React.useCallback(() => {
     const nextDrawer = players[activeTurnCount.current]
