@@ -4,7 +4,6 @@ import {
   PLAYER_JOINED,
   PLAYER_LEAVED,
   pictionaryWordsArr,
-  GAME_TIMER,
   GAME_SET_ANSWER,
   GAME_SEND_ANSWER,
   PLAYER_SET,
