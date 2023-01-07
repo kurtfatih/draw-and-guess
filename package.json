@@ -4,6 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build:frontend": "yarn workspace @draw-and-guess/frontend build"
+    "build:frontend": "yarn workspace @draw-and-guess/frontend build",
+    "start:server": "yarn workspace @draw-and-guess/server start:production"
   }
 }
